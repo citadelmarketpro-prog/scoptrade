@@ -15,7 +15,7 @@ import {
   RefreshCw,
 } from "lucide-react";
 import { apiFetch } from "@/lib/api";
-import { useRouter } from "next/navigation";
+import DepositModal from "@/components/dashboard/modals/DepositModal";
 
 interface ReferralData {
   referral_code: string;
@@ -36,8 +36,6 @@ interface Referral {
 }
 
 export default function ReferralPage() {
-  const router = useRouter();
-
   const [referralData, setReferralData] = useState<ReferralData | null>(null);
   const [referrals, setReferrals] = useState<Referral[]>([]);
   const [copied, setCopied] = useState(false);
@@ -45,6 +43,7 @@ export default function ReferralPage() {
   const [error, setError] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [modalCopied, setModalCopied] = useState(false);
+  const [showDeposit, setShowDeposit] = useState(false);
 
   // States for generating referral code
   const [generating, setGenerating] = useState(false);
@@ -442,7 +441,7 @@ export default function ReferralPage() {
                   </p>
 
                   <button
-                    onClick={() => router.push("/deposit")}
+                    onClick={() => setShowDeposit(true)}
                     className="inline-flex items-center mt-3 gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-sm font-medium transition-all"
                   >
                     <DownloadCloud className="w-4 h-4" />
@@ -682,6 +681,9 @@ export default function ReferralPage() {
           </motion.div>
         </div>
       )}
+
+      {/* Deposit Modal */}
+      <DepositModal isOpen={showDeposit} onClose={() => setShowDeposit(false)} />
     </section>
   );
 }

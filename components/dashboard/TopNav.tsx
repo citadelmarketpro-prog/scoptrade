@@ -258,7 +258,9 @@ export default function TopNav({ onMenuClick, user }: TopNavProps) {
               className="flex items-center space-x-2 px-2.5 py-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
             >
               <div className="w-7 h-7 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-semibold text-[10px]">
-                {user ? `${user.first_name[0] || ""}${user.last_name[0] || ""}`.toUpperCase() : ""}
+                {user
+                  ? `${user.first_name?.[0] || ""}${user.last_name?.[0] || ""}`.toUpperCase()
+                  : ""}
               </div>
               <span className="hidden sm:block text-xs font-medium text-gray-700 dark:text-gray-300">
                 Hey, {user?.first_name || "User"}!
@@ -268,7 +270,10 @@ export default function TopNav({ onMenuClick, user }: TopNavProps) {
 
             <AnimatePresence>
               {showUserMenu && (
-                <UserProfileMenu onClose={() => setShowUserMenu(false)} user={user} />
+                <UserProfileMenu
+                  onClose={() => setShowUserMenu(false)}
+                  user={user}
+                />
               )}
             </AnimatePresence>
           </div>

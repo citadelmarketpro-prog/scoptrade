@@ -12,6 +12,7 @@ import {
   DollarSign,
   UserCheck,
   Shield,
+  Clock,
 } from "lucide-react";
 import { toast } from "sonner";
 import {
@@ -193,6 +194,7 @@ export default function TraderProfilePage() {
   const [error, setError] = useState<string | null>(null);
   const [userBalance, setUserBalance] = useState<number>(0);
   const [isCopying, setIsCopying] = useState(false);
+  const [cancelRequested, setCancelRequested] = useState(false);
   const [loadingBalance, setLoadingBalance] = useState(false);
   const [copyActionLoading, setCopyActionLoading] = useState(false);
   const [similarTraders, setSimilarTraders] = useState<SimilarTrader[]>([]);
@@ -274,7 +276,10 @@ export default function TraderProfilePage() {
       const response = await apiFetch(`/copy-trader/status/${traderId}/`);
       if (!response.ok) return;
       const data = await response.json();
-      if (data.success && data.is_copying) setIsCopying(true);
+      if (data.success && data.is_copying) {
+        setIsCopying(true);
+        setCancelRequested(data.cancel_requested || false);
+      }
     } catch (err) {
       console.error("Error fetching copy status:", err);
     }
@@ -326,19 +331,19 @@ export default function TraderProfilePage() {
       });
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to cancel copy");
+        throw new Error(errorData.error || "Failed to request cancel");
       }
       const data = await response.json();
       if (!data.success)
-        throw new Error(data.error || "Failed to cancel copy");
-      setIsCopying(false);
-      toast.info("Copy Cancelled", {
+        throw new Error(data.error || "Failed to request cancel");
+      setCancelRequested(true);
+      toast.info("Cancel Request Sent", {
         description:
-          data.message || `You have stopped copying ${trader.name}`,
+          data.message || `Your cancel request has been sent to admin`,
       });
     } catch (err) {
-      console.error("Error canceling copy:", err);
-      toast.error("Failed to Cancel Copy", {
+      console.error("Error requesting cancel:", err);
+      toast.error("Failed to Request Cancel", {
         description: err instanceof Error ? err.message : "An error occurred",
       });
     } finally {
@@ -491,6 +496,11 @@ export default function TraderProfilePage() {
                           ? "Processing..."
                           : "Copy Trader"}
                     </button>
+                  ) : cancelRequested ? (
+                    <span className="px-4 py-2.5 bg-orange-100 dark:bg-orange-500/10 text-orange-700 dark:text-orange-400 rounded-xl text-sm font-semibold flex items-center gap-1.5">
+                      <Clock className="w-4 h-4" />
+                      Cancel Requested
+                    </span>
                   ) : (
                     <>
                       <span className="px-4 py-2.5 bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 rounded-xl text-sm font-semibold flex items-center gap-1.5">

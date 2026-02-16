@@ -21,6 +21,7 @@ import { BACKEND_URL } from "@/lib/constants";
 import { apiFetch } from "@/lib/api";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Checkbox } from "@/components/ui/checkbox";
+import PagePreloader from "@/components/PagePreloader";
 
 // ----------------------
 // Types
@@ -262,7 +263,8 @@ function RegisterPageContent() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row gap-10 bg-white dark:bg-gradient-to-br dark:from-[#0a1628] dark:via-[#0d1b2a] dark:to-[#1b263b] text-black dark:text-white transition-colors duration-300">
+    <PagePreloader>
+      <div className="min-h-screen flex flex-col lg:flex-row gap-10 bg-white dark:bg-gradient-to-br dark:from-[#0a1628] dark:via-[#0d1b2a] dark:to-[#1b263b] text-black dark:text-white transition-colors duration-300">
       {/* Left side: Register Form */}
       <div className="flex-1 flex items-center justify-center px-8 py-8 md:py-16 bg-white dark:bg-transparent">
         <motion.div
@@ -729,7 +731,8 @@ function RegisterPageContent() {
           </div>
         </motion.div>
       </div>
-    </div>
+      </div>
+    </PagePreloader>
   );
 }
 

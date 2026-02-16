@@ -13,6 +13,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { apiFetch } from "@/lib/api";
 import { toast } from "sonner";
 import { PulseLoader } from "react-spinners";
+import PagePreloader from "@/components/PagePreloader";
 
 const resetPasswordSchema = z
   .object({
@@ -138,21 +139,24 @@ function ResetPasswordContent() {
   // Loading state
   if (validating) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gradient-to-br dark:from-[#0a1628] dark:via-[#0d1b2a] dark:to-[#1b263b]">
+      <PagePreloader>
+        <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gradient-to-br dark:from-[#0a1628] dark:via-[#0d1b2a] dark:to-[#1b263b]">
         <div className="text-center">
           <PulseLoader color="#3b82f6" size={15} />
           <p className="text-gray-600 dark:text-gray-300 mt-4">
             Validating reset link...
           </p>
         </div>
-      </div>
+        </div>
+      </PagePreloader>
     );
   }
 
   // Invalid token state
   if (!tokenValid) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gradient-to-br dark:from-[#0a1628] dark:via-[#0d1b2a] dark:to-[#1b263b] px-8">
+      <PagePreloader>
+        <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gradient-to-br dark:from-[#0a1628] dark:via-[#0d1b2a] dark:to-[#1b263b] px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -185,14 +189,16 @@ function ResetPasswordContent() {
             </Link>
           </div>
         </motion.div>
-      </div>
+        </div>
+      </PagePreloader>
     );
   }
 
   // Success state
   if (resetSuccess) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gradient-to-br dark:from-[#0a1628] dark:via-[#0d1b2a] dark:to-[#1b263b] px-8">
+      <PagePreloader>
+        <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gradient-to-br dark:from-[#0a1628] dark:via-[#0d1b2a] dark:to-[#1b263b] px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -219,13 +225,15 @@ function ResetPasswordContent() {
             </Link>
           </div>
         </motion.div>
-      </div>
+        </div>
+      </PagePreloader>
     );
   }
 
   // Reset password form
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gradient-to-br dark:from-[#0a1628] dark:via-[#0d1b2a] dark:to-[#1b263b] px-8">
+    <PagePreloader>
+      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gradient-to-br dark:from-[#0a1628] dark:via-[#0d1b2a] dark:to-[#1b263b] px-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -357,7 +365,8 @@ function ResetPasswordContent() {
           </p>
         </form>
       </motion.div>
-    </div>
+      </div>
+    </PagePreloader>
   );
 }
 

@@ -17,7 +17,10 @@ interface UserProfileMenuProps {
   user: AuthUser | null;
 }
 
-export default function UserProfileMenu({ onClose, user }: UserProfileMenuProps) {
+export default function UserProfileMenu({
+  onClose,
+  user,
+}: UserProfileMenuProps) {
   const router = useRouter();
 
   const handleLogout = async () => {
@@ -46,7 +49,9 @@ export default function UserProfileMenu({ onClose, user }: UserProfileMenuProps)
         <div className="px-4 py-4 border-b border-gray-100 dark:border-white/5">
           <div className="flex items-center space-x-3 mb-3">
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-semibold text-xs">
-              {user ? `${user.first_name[0] || ""}${user.last_name[0] || ""}`.toUpperCase() : ""}
+              {user
+                ? `${user.first_name?.[0] || ""}${user.last_name?.[0] || ""}`.toUpperCase()
+                : ""}
             </div>
             <div className="flex-1 min-w-0">
               <h3 className="text-xs font-semibold text-gray-900 dark:text-white truncate">

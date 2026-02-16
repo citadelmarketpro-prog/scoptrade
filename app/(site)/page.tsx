@@ -13,7 +13,7 @@ import TradersSection from "@/components/site/TradersSecion";
 import TrustSection from "@/components/site/TrustSection";
 import WhatYouCanCopy from "@/components/site/WhatYouCanCopy";
 import WhyChooseUs from "@/components/site/WhyChooseUs";
-import Image from "next/image";
+import PagePreloader from "@/components/PagePreloader";
 
 export const metadata: Metadata = {
   title: "Copy Futures, Options & Contracts with Precision",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <>
+    <PagePreloader>
       <Navbar />
       <main className="pt-16 lg:pt-20">
         <HeroSection />
@@ -37,9 +37,9 @@ export default function Home() {
         <TeamSection />
         <TrustSection />
         <CTASection />
-        <LiquidityProvidersSection /> 
+        <LiquidityProvidersSection />
         <Footer />
       </main>
-    </>
+    </PagePreloader>
   );
 }

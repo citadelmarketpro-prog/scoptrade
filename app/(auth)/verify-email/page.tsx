@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { PulseLoader } from "react-spinners";
 import Link from "next/link";
 import Image from "next/image";
+import PagePreloader from "@/components/PagePreloader";
 
 function VerifyEmailContent() {
   const [code, setCode] = useState(["", "", "", ""]);
@@ -92,7 +93,8 @@ function VerifyEmailContent() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gradient-to-br dark:from-[#0a1628] dark:via-[#0d1b2a] dark:to-[#1b263b] px-8">
+    <PagePreloader>
+      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gradient-to-br dark:from-[#0a1628] dark:via-[#0d1b2a] dark:to-[#1b263b] px-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -178,7 +180,8 @@ function VerifyEmailContent() {
           Back to Login
         </Link>
       </motion.div>
-    </div>
+      </div>
+    </PagePreloader>
   );
 }
 

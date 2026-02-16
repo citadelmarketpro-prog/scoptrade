@@ -153,22 +153,46 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
     e.preventDefault();
     setIsDragging(false);
     const files = e.dataTransfer.files;
-    if (files?.[0]?.type.startsWith("image/")) {
-      setReceipt(files[0]);
-      setError("");
-    } else {
+    const file = files?.[0];
+
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
       setError("Please upload an image file");
+      return;
     }
+
+    // Check file size (10MB = 10 * 1024 * 1024 bytes)
+    const maxSize = 10 * 1024 * 1024;
+    if (file.size > maxSize) {
+      setError("File size must be less than 10MB");
+      return;
+    }
+
+    setReceipt(file);
+    setError("");
   }, []);
 
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    if (files?.[0]?.type.startsWith("image/")) {
-      setReceipt(files[0]);
-      setError("");
-    } else {
+    const file = files?.[0];
+
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
       setError("Please upload an image file");
+      return;
     }
+
+    // Check file size (10MB = 10 * 1024 * 1024 bytes)
+    const maxSize = 10 * 1024 * 1024;
+    if (file.size > maxSize) {
+      setError("File size must be less than 10MB");
+      return;
+    }
+
+    setReceipt(file);
+    setError("");
   };
 
   const handleConfirmDeposit = async () => {

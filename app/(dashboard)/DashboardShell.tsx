@@ -6,6 +6,7 @@ import Sidebar from "@/components/dashboard/Sidebar";
 import TopNav from "@/components/dashboard/TopNav";
 import { apiFetch } from "@/lib/api";
 import { useRouter } from "next/navigation";
+import Preloader from "@/components/Preloader";
 
 export interface AuthUser {
   email: string;
@@ -64,11 +65,7 @@ export default function DashboardShell({ children }: DashboardShellProps) {
   }, [router]);
 
   if (authState !== "authenticated") {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
-      </div>
-    );
+    return <Preloader />;
   }
 
   return (

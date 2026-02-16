@@ -14,6 +14,7 @@ import { apiFetch } from "@/lib/api";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { PulseLoader } from "react-spinners";
+import PagePreloader from "@/components/PagePreloader";
 
 type FormValues = {
   email: string;
@@ -101,7 +102,8 @@ export default function LoginPage() {
   useEffect(() => setMounted(true), []);
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row gap-10 bg-white dark:bg-gradient-to-br dark:from-[#0a1628] dark:via-[#0d1b2a] dark:to-[#1b263b] text-black dark:text-white transition-colors duration-300">
+    <PagePreloader>
+      <div className="min-h-screen flex flex-col lg:flex-row gap-10 bg-white dark:bg-gradient-to-br dark:from-[#0a1628] dark:via-[#0d1b2a] dark:to-[#1b263b] text-black dark:text-white transition-colors duration-300">
       {/* Left side: Login Form */}
       <div className="flex-1 flex items-center justify-center px-8 py-6 bg-white dark:bg-transparent">
         <motion.div
@@ -339,6 +341,7 @@ export default function LoginPage() {
           </div>
         </motion.div>
       </div>
-    </div>
+      </div>
+    </PagePreloader>
   );
 }
