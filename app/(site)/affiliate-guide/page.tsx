@@ -94,16 +94,7 @@ export default function AffiliateGuide() {
               </ul>
             </section>
 
-            {/* Image placeholders after Your Dashboard */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-              <div className="aspect-video rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600">
-                <p className="text-gray-400 dark:text-gray-500 text-sm">Image placeholder</p>
-              </div>
-              <div className="aspect-video rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600">
-                <p className="text-gray-400 dark:text-gray-500 text-sm">Image placeholder</p>
-              </div>
-            </div>
-
+          
             {/* Promoting ScopsTrade */}
             <section>
               <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
@@ -185,15 +176,7 @@ export default function AffiliateGuide() {
               </ul>
             </section>
 
-            {/* Image placeholders after Tracking and Analytics */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-              <div className="aspect-video rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600">
-                <p className="text-gray-400 dark:text-gray-500 text-sm">Image placeholder</p>
-              </div>
-              <div className="aspect-video rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600">
-                <p className="text-gray-400 dark:text-gray-500 text-sm">Image placeholder</p>
-              </div>
-            </div>
+            
 
             {/* Withdrawal of Earnings */}
             <section>

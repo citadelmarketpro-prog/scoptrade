@@ -8,256 +8,371 @@ export default function BrokerPartnership() {
     <PagePreloader>
       <Navbar />
       <main className="pt-16 lg:pt-20">
-        <div className="max-w-4xl mx-auto px-6 py-12 lg:py-20">
-          <div className="mb-12">
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              Broker Partnership
+        {/* Hero Section (img4) */}
+        <section className="relative overflow-hidden bg-white dark:bg-gray-900/50 py-24 lg:py-36">
+          <div className="pointer-events-none absolute inset-0 opacity-20 bg-[radial-gradient(circle,var(--dot-color)_1px,transparent_1px)] bg-size-[16px_16px]" />
+          <div className="relative mx-auto max-w-3xl px-6 text-center">
+            <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-6xl lg:text-7xl italic">
+              Rewrite the Rules of{" "}
+              <span className="bg-linear-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-cyan-400 bg-clip-text text-transparent">
+                Brokerage
+              </span>
             </h1>
-            <p className="text-gray-600 dark:text-gray-400 text-sm">
-              Partner with ScopsTrade to offer copy trading technology to your clients
+            <p className="mt-6 text-gray-600 dark:text-gray-400 leading-relaxed max-w-xl mx-auto">
+              You can be the first brokerage industry innovation. With
+              ScopsTrade, alongside your Traders and restart your profits
+              manifold.
             </p>
+            <div className="mt-10">
+              <Link
+                href="/register"
+                className="inline-block rounded-md bg-primary px-8 py-3.5 text-sm font-semibold text-white transition hover:bg-primary-hover shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50"
+              >
+                Book a meeting with us &rarr;
+              </Link>
+            </div>
           </div>
-          <div className="space-y-12">
-            {/* Partner with ScopsTrade */}
-            <section>
-              <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                Partner with ScopsTrade
+        </section>
+
+        {/* Why Partner With SignalSync (img5) */}
+        <section className="px-6 py-16 lg:py-24">
+          <div className="mx-auto max-w-6xl">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
+                Why Partner With{" "}
+                <span className="bg-linear-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-cyan-400 bg-clip-text text-transparent">
+                  Signalsync
+                </span>
+                ?
               </h2>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                ScopsTrade offers a white-label and integration partnership program designed for
-                brokers who want to enhance their offering with best-in-class copy trading technology.
-                Our platform seamlessly integrates with your existing infrastructure, allowing your
-                clients to access social and copy trading without leaving your ecosystem.
+              <p className="mt-4 text-gray-600 dark:text-gray-400">
+                Adaptation and Acquisitions are the best formula for automated
+                solutions.
               </p>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                Whether you are a startup broker looking to differentiate or an established firm
-                seeking to expand your product suite, ScopsTrade provides the technology, expertise,
-                and support you need.
-              </p>
-            </section>
-
-            {/* Why Partner with Us */}
-            <section>
-              <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                Why Partner with Us?
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Access to Technology</h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
-                    Leverage our proven copy trading engine, AutoGuard&trade; risk management, and
-                    real-time trade replication technology without building from scratch.
-                  </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-200 dark:bg-white/10 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10">
+              {/* Card 1 - Boost Trading Volume */}
+              <div className="bg-white dark:bg-gray-900/80 p-10">
+                <div className="mb-5 text-blue-500 dark:text-blue-400">
+                  <svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M4 24l8-8 4 4 12-12"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M20 8h8v8"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </div>
-                <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Liquidity Solutions</h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
-                    Access deep liquidity pools and multi-asset execution across forex, commodities,
-                    indices, and cryptocurrencies through our network.
-                  </p>
-                </div>
-                <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Compliance Support</h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
-                    Our compliance team helps you navigate regulatory requirements across multiple
-                    jurisdictions, ensuring your copy trading offering meets local standards.
-                  </p>
-                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  Boost Trading Volume
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Increase trading volume by 100% and tap into new revenue
+                  streams.
+                </p>
               </div>
-            </section>
 
-            {/* Partnership Benefits */}
-            <section>
-              <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                Partnership Benefits
-              </h2>
-              <ul className="space-y-3 text-gray-700 dark:text-gray-300">
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#10003;</span>
-                  <span>White-label copy trading platform customizable to your brand identity</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#10003;</span>
-                  <span>RESTful API and FIX protocol integration for seamless connectivity</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#10003;</span>
-                  <span>AutoGuard&trade; risk management technology included for all client accounts</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#10003;</span>
-                  <span>Dedicated account manager and technical support team</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#10003;</span>
-                  <span>Revenue sharing model with competitive partnership terms</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#10003;</span>
-                  <span>Marketing support including co-branded materials and campaigns</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#10003;</span>
-                  <span>Access to ScopsTrade&apos;s global network of signal leaders and traders</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#10003;</span>
-                  <span>Scalable infrastructure that grows with your business</span>
-                </li>
-              </ul>
-            </section>
-
-            {/* Image placeholders after Partnership Benefits */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-              <div className="aspect-video rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600">
-                <p className="text-gray-400 dark:text-gray-500 text-sm">Image placeholder</p>
+              {/* Card 2 - Enhance Client Retention */}
+              <div className="bg-white dark:bg-gray-900/80 p-10">
+                <div className="mb-5 text-blue-500 dark:text-blue-400">
+                  <svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M16 6l3.09 6.26L26 13.27l-5 4.87L22.18 26 16 22.27 9.82 26 11 18.14l-5-4.87 6.91-1.01L16 6z"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      fill="none"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  Enhance Client Retention
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Reduce client churn by 60% with our platform.
+                </p>
               </div>
-              <div className="aspect-video rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600">
-                <p className="text-gray-400 dark:text-gray-500 text-sm">Image placeholder</p>
+
+              {/* Card 3 - Expand Your Offerings */}
+              <div className="bg-white dark:bg-gray-900/80 p-10">
+                <div className="mb-5 text-blue-500 dark:text-blue-400">
+                  <svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 20l8-8M24 12l-8 8"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M4 16h24"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  Expand Your Offerings
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Add social and signals trading alongside your existing trading
+                  capabilities.
+                </p>
+              </div>
+
+              {/* Card 4 - Lower Acquisition Cost */}
+              <div className="bg-white dark:bg-gray-900/80 p-10">
+                <div className="mb-5 text-blue-500 dark:text-blue-400">
+                  <svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="16"
+                      cy="16"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    />
+                    <circle cx="16" cy="16" r="4" stroke="currentColor" strokeWidth="2" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  Lower Acquisition Cost
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Cut down acquisition expenses by up to 40%.
+                </p>
               </div>
             </div>
+          </div>
+        </section>
 
-            {/* Integration Process */}
-            <section>
-              <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                Integration Process
-              </h2>
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="bg-blue-500 text-white rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold shrink-0">1</div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">Discovery Call</h3>
-                    <p className="text-gray-700 dark:text-gray-300">
-                      We begin with a consultation to understand your business, technical requirements,
-                      regulatory environment, and goals for the partnership.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="bg-blue-500 text-white rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold shrink-0">2</div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">Technical Integration</h3>
-                    <p className="text-gray-700 dark:text-gray-300">
-                      Our engineering team works with yours to integrate the ScopsTrade copy trading
-                      engine into your platform via API, plugin, or white-label deployment.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="bg-blue-500 text-white rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold shrink-0">3</div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">Testing and QA</h3>
-                    <p className="text-gray-700 dark:text-gray-300">
-                      Comprehensive testing in a sandbox environment to ensure everything works
-                      flawlessly before going live with your clients.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="bg-blue-500 text-white rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold shrink-0">4</div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">Launch and Support</h3>
-                    <p className="text-gray-700 dark:text-gray-300">
-                      Go live with full support from our team. We provide ongoing monitoring,
-                      maintenance, and feature updates as the partnership evolves.
-                    </p>
-                  </div>
-                </div>
+        {/* How it works (img6) */}
+        <section className="bg-gray-100 dark:bg-gray-800/30 px-6 py-16 lg:py-24">
+          <div className="mx-auto max-w-5xl">
+            <h2 className="text-center text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl mb-16">
+              How it works
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 text-center">
+              <div>
+                <span className="text-blue-500 dark:text-blue-400 font-semibold text-sm">
+                  1
+                </span>
+                <h3 className="mt-2 text-xl font-bold text-gray-900 dark:text-white">
+                  Technical Setup
+                </h3>
+                <p className="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                  7-9 days
+                </p>
               </div>
-            </section>
-
-            {/* Technology Stack */}
-            <section>
-              <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                Technology Stack
-              </h2>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                Our technology is built for performance, reliability, and scale:
-              </p>
-              <ul className="space-y-2 text-gray-700 dark:text-gray-300">
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#8226;</span>
-                  <span><strong>Sub-millisecond trade replication</strong> — Ensure followers receive the same entry prices as leaders</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#8226;</span>
-                  <span><strong>99.99% uptime SLA</strong> — Our infrastructure is designed for maximum reliability</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#8226;</span>
-                  <span><strong>Multi-asset support</strong> — Forex, commodities, indices, stocks, and cryptocurrencies</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#8226;</span>
-                  <span><strong>AutoGuard&trade; integration</strong> — Built-in risk management for all copy trading accounts</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#8226;</span>
-                  <span><strong>Comprehensive APIs</strong> — RESTful and WebSocket APIs for real-time data and control</span>
-                </li>
-              </ul>
-            </section>
-
-            {/* Image placeholders after Technology Stack */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-              <div className="aspect-video rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600">
-                <p className="text-gray-400 dark:text-gray-500 text-sm">Image placeholder</p>
+              <div>
+                <span className="text-blue-500 dark:text-blue-400 font-semibold text-sm">
+                  2
+                </span>
+                <h3 className="mt-2 text-xl font-bold text-gray-900 dark:text-white">
+                  Launch Preparation
+                </h3>
+                <Link
+                  href="/register"
+                  className="mt-2 inline-block text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm font-medium transition"
+                >
+                  Become an affiliate &rarr;
+                </Link>
               </div>
-              <div className="aspect-video rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600">
-                <p className="text-gray-400 dark:text-gray-500 text-sm">Image placeholder</p>
+              <div>
+                <span className="text-blue-500 dark:text-blue-400 font-semibold text-sm">
+                  3
+                </span>
+                <h3 className="mt-2 text-xl font-bold text-gray-900 dark:text-white">
+                  Go Live
+                </h3>
               </div>
             </div>
-
-            {/* Compliance and Regulation */}
-            <section>
-              <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                Compliance and Regulation
-              </h2>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                ScopsTrade takes regulatory compliance seriously. Our platform is designed to meet
-                the requirements of multiple regulatory frameworks, and our compliance team supports
-                partners in navigating their local regulatory landscape.
-              </p>
-              <ul className="space-y-2 text-gray-700 dark:text-gray-300">
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#8226;</span>
-                  <span>KYC/AML compliance built into the platform</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#8226;</span>
-                  <span>Risk disclosure and suitability assessment frameworks</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#8226;</span>
-                  <span>Audit trails and regulatory reporting capabilities</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#8226;</span>
-                  <span>Data protection and privacy compliance (GDPR, etc.)</span>
-                </li>
-              </ul>
-            </section>
-
-            {/* CTA */}
-            <section className="bg-gray-100 dark:bg-gray-900 rounded-2xl p-8 border-2 border-gray-200 dark:border-gray-800">
-              <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                Ready to Partner?
-              </h2>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                Take the first step toward integrating ScopsTrade&apos;s copy trading technology into your
-                brokerage. Contact our partnerships team to schedule a discovery call.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Link href="/register" className="inline-block bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50">
-                  Get Started
-                </Link>
-                <Link href="/" className="inline-block bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 text-gray-900 dark:text-white px-8 py-3 rounded-full font-semibold transition-all duration-300">
-                  Go Back Home
-                </Link>
-              </div>
-            </section>
           </div>
-        </div>
+        </section>
+
+        {/* Our B2B Solutions (img7) */}
+        <section className="px-6 py-16 lg:py-24">
+          <div className="mx-auto max-w-6xl">
+            <h2 className="text-center text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl mb-12">
+              Our B2B Solutions
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              {/* API Integration */}
+              <div className="flex flex-col items-center rounded-2xl bg-white/70 dark:bg-white/5 backdrop-blur-sm border border-gray-200/80 dark:border-white/8 px-8 py-12 text-center shadow-sm">
+                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 dark:bg-blue-500/10">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className="text-blue-600 dark:text-blue-400"
+                  >
+                    <path
+                      d="M12 5v14M5 12h14"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </div>
+                <h3 className="mb-3 text-lg font-bold text-gray-900 dark:text-white">
+                  API Integration
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                  Seamlessly incorporate our technology into your existing
+                  trading infrastructure whilst ensuring you get the complete
+                  copy trading capabilities.
+                </p>
+              </div>
+
+              {/* Custom Development */}
+              <div className="flex flex-col items-center rounded-2xl bg-white/70 dark:bg-white/5 backdrop-blur-sm border border-gray-200/80 dark:border-white/8 px-8 py-12 text-center shadow-sm">
+                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 dark:bg-blue-500/10">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className="text-blue-600 dark:text-blue-400"
+                  >
+                    <rect
+                      x="4"
+                      y="4"
+                      width="16"
+                      height="16"
+                      rx="2"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    />
+                    <rect
+                      x="8"
+                      y="8"
+                      width="8"
+                      height="8"
+                      rx="1"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    />
+                  </svg>
+                </div>
+                <h3 className="mb-3 text-lg font-bold text-gray-900 dark:text-white">
+                  Custom Development
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                  We tailor our solutions specifically to your business needs,
+                  providing you with the freedom to achieve your goals.
+                </p>
+              </div>
+
+              {/* Marketing and Sales Support */}
+              <div className="flex flex-col items-center rounded-2xl bg-white/70 dark:bg-white/5 backdrop-blur-sm border border-gray-200/80 dark:border-white/8 px-8 py-12 text-center shadow-sm">
+                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 dark:bg-blue-500/10">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className="text-blue-600 dark:text-blue-400"
+                  >
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="8"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    />
+                  </svg>
+                </div>
+                <h3 className="mb-3 text-lg font-bold text-gray-900 dark:text-white">
+                  Marketing and Sales Support
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                  We offer you the benefit of our expertise in social trader
+                  acquisition and retention to help you maximize your customer
+                  base effectively.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Ready to transform your Brokerage + Contact Us (img9) */}
+        <section className="bg-gray-100 dark:bg-gray-800/30 px-6 py-16 lg:py-24">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl italic">
+              Ready to transform your{" "}
+              <span className="bg-linear-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-cyan-400 bg-clip-text text-transparent">
+                Brokerage
+              </span>
+              ?
+            </h2>
+            <p className="mt-5 text-gray-600 dark:text-gray-400 leading-relaxed">
+              Join the leading brokers who have already partnered with
+              ScopsTrade. Let&apos;s grow together.
+            </p>
+            <div className="mt-8">
+              <Link
+                href="/register"
+                className="inline-block rounded-md bg-primary px-10 py-4 text-sm font-semibold text-white transition hover:bg-primary-hover shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50"
+              >
+                Get started now &rarr;
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Us */}
+        <section className="px-6 py-16 lg:py-24">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl mb-6">
+              Contact Us
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
+              Have questions about our broker partnership program? Reach out to
+              our partnerships team and we&apos;ll get back to you within 24
+              hours.
+            </p>
+            <Link
+              href="mailto:partnerships@scopstrade.com"
+              className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition"
+            >
+              support@scopstrade.com
+            </Link>
+          </div>
+        </section>
+
         <Footer />
       </main>
     </PagePreloader>

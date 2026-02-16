@@ -8,215 +8,270 @@ export default function AutoGuard() {
     <PagePreloader>
       <Navbar />
       <main className="pt-16 lg:pt-20">
-        <div className="max-w-4xl mx-auto px-6 py-12 lg:py-20">
-          <div className="mb-12">
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              AutoGuard&trade;
+        {/* Hero Section */}
+        <section className="relative overflow-hidden bg-white dark:bg-gray-900/50 py-24 lg:py-36">
+          {/* Subtle dotted background pattern using theme variable */}
+          <div className="pointer-events-none absolute inset-0 opacity-20 bg-[radial-gradient(circle,var(--dot-color)_1px,transparent_1px)] bg-size-[16px_16px]" />
+          <div className="relative mx-auto max-w-4xl px-6 text-center">
+            <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-6xl lg:text-7xl">
+              Autoprotect your{" "}
+              <span className="bg-linear-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-cyan-400 bg-clip-text text-transparent">
+                account
+              </span>
             </h1>
-            <p className="text-gray-600 dark:text-gray-400 text-sm">
-              Automated risk management technology that protects your copy trading portfolio
-            </p>
+            <div className="mt-10">
+              <Link
+                href="/register"
+                className="inline-block rounded-md bg-primary px-8 py-3.5 text-sm font-semibold text-white transition hover:bg-primary-hover shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50"
+              >
+                Create account &rarr;
+              </Link>
+            </div>
           </div>
-          <div className="space-y-12">
-            {/* What is AutoGuard */}
-            <section>
-              <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                What is AutoGuard&trade;?
-              </h2>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                AutoGuard&trade; is ScopsTrade&apos;s proprietary automated risk management system
-                designed specifically for copy traders. It continuously monitors your portfolio,
-                analyzes market conditions, and applies intelligent safeguards to protect your
-                capital — all without requiring manual intervention.
-              </p>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                Whether you&apos;re a beginner or an experienced trader, AutoGuard&trade; ensures
-                that the traders you copy cannot expose your account to excessive risk. It acts
-                as a smart safety net between the signal leader&apos;s trades and your portfolio.
-              </p>
-            </section>
+        </section>
 
-            {/* How AutoGuard Works */}
-            <section>
-              <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                How AutoGuard&trade; Works
-              </h2>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                AutoGuard&trade; operates in real time across three layers of protection:
-              </p>
-              <ul className="space-y-3 text-gray-700 dark:text-gray-300">
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold mt-1">1.</span>
-                  <span><strong>Pre-Trade Analysis</strong> — Before any copied trade is executed on your account, AutoGuard&trade; evaluates the position size, risk-to-reward ratio, and current market volatility to determine if it falls within your risk parameters.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold mt-1">2.</span>
-                  <span><strong>Active Monitoring</strong> — While trades are open, AutoGuard&trade; continuously tracks drawdown levels, correlation exposure, and overall portfolio health to detect early warning signs.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold mt-1">3.</span>
-                  <span><strong>Automated Response</strong> — When predefined thresholds are breached, AutoGuard&trade; can automatically reduce position sizes, apply stop-losses, or pause copying entirely until conditions stabilize.</span>
-                </li>
-              </ul>
-            </section>
-
-            {/* Image placeholders after How it Works */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-              <div className="aspect-video rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600">
-                <p className="text-gray-400 dark:text-gray-500 text-sm">Image placeholder</p>
+        {/* Meet AutoGuard + How does it work */}
+        <section className="px-6 py-16 lg:py-24">
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2">
+            {/* Meet AutoGuard Card */}
+            <div className="rounded-2xl bg-white/70 dark:bg-white/5 backdrop-blur-sm border border-gray-200/80 dark:border-white/8 p-10 lg:p-12">
+              {/* Icon */}
+              <div className="mb-8 text-gray-400 dark:text-gray-500">
+                <svg
+                  width="64"
+                  height="64"
+                  viewBox="0 0 64 64"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="12"
+                    y="24"
+                    width="40"
+                    height="28"
+                    rx="4"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M22 24V16a10 10 0 0 1 20 0v8"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <circle cx="28" cy="40" r="2" fill="currentColor" />
+                  <circle cx="32" cy="40" r="2" fill="currentColor" />
+                  <circle cx="36" cy="40" r="2" fill="currentColor" />
+                </svg>
               </div>
-              <div className="aspect-video rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600">
-                <p className="text-gray-400 dark:text-gray-500 text-sm">Image placeholder</p>
+              <h2 className="mb-5 text-2xl font-bold text-gray-900 dark:text-white lg:text-3xl">
+                Meet AutoGuard
+              </h2>
+              <p className="mb-5 leading-relaxed text-gray-600 dark:text-gray-400">
+                AutoGuard&trade; is an account protection feature that monitors
+                each Trader&apos;s behavior and automatically removes a Trader
+                when detecting a trading strategy has deviated from its expected
+                loss profile.
+              </p>
+              <p className="leading-relaxed text-gray-600 dark:text-gray-400">
+                AutoGuard&trade; Capital Protection is available for all
+                investors, and it&apos;s mandatory for the users residing in the
+                EU using the EU SignalSync platform as it creates a protection
+                shield for your investment capital!
+              </p>
+            </div>
+
+            {/* How does it work Card */}
+            <div className="rounded-2xl bg-white/70 dark:bg-white/5 backdrop-blur-sm border border-gray-200/80 dark:border-white/8 p-10 lg:p-12">
+              {/* Icon */}
+              <div className="mb-8 text-blue-500 dark:text-blue-400">
+                <svg
+                  width="64"
+                  height="64"
+                  viewBox="0 0 64 64"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="38"
+                    cy="20"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                  <circle
+                    cx="24"
+                    cy="36"
+                    r="12"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                  <circle
+                    cx="44"
+                    cy="40"
+                    r="6"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                </svg>
+              </div>
+              <h2 className="mb-5 text-2xl font-bold text-gray-900 dark:text-white lg:text-3xl">
+                How does it work?
+              </h2>
+              <p className="mb-5 leading-relaxed text-gray-600 dark:text-gray-400">
+                The AutoGuard&trade; automatically calculates a trading exit
+                value for the trades opened in your account based on your
+                specified capital protection amount. When your threshold is hit,
+                AutoGuard&trade; stops all your trading works at open positions
+                and disable the Leader instantly.
+              </p>
+              <p className="leading-relaxed text-gray-600 dark:text-gray-400">
+                For detailed information about AutoGuard, please consult the
+                autoguard guide.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Ready to Invest Smarter */}
+        <section className="px-6 py-16 lg:py-24">
+          <div className="mx-auto max-w-6xl">
+            <h2 className="mb-12 text-center text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
+              Ready to Invest Smarter?
+            </h2>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+              {/* Card 1 */}
+              <div className="flex flex-col items-center rounded-2xl bg-gray-100 dark:bg-gray-800/50 border border-gray-200/50 dark:border-white/8 px-8 py-12 text-center">
+                <div className="mb-6 text-blue-600 dark:text-blue-400">
+                  <svg
+                    width="48"
+                    height="48"
+                    viewBox="0 0 48 48"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="14"
+                      y="8"
+                      width="20"
+                      height="32"
+                      rx="10"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    />
+                    <circle cx="24" cy="18" r="4" stroke="currentColor" strokeWidth="2" />
+                    <circle cx="24" cy="30" r="2" fill="currentColor" />
+                  </svg>
+                </div>
+                <h3 className="mb-4 text-xl font-bold text-gray-900 dark:text-white lg:text-2xl">
+                  Create Your Account.
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Join now to unlock options-focused copy trading.
+                </p>
+              </div>
+
+              {/* Card 2 */}
+              <div className="flex flex-col items-center rounded-2xl bg-gray-100 dark:bg-gray-800/50 border border-gray-200/50 dark:border-white/8 px-8 py-12 text-center">
+                <div className="mb-6 text-blue-600 dark:text-blue-400">
+                  <svg
+                    width="48"
+                    height="48"
+                    viewBox="0 0 48 48"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="20"
+                      cy="24"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    />
+                    <circle
+                      cx="30"
+                      cy="20"
+                      r="8"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    />
+                    <path
+                      d="M26 14l3-3m0 0l3 3m-3-3v6"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </div>
+                <h3 className="mb-4 text-xl font-bold text-gray-900 dark:text-white lg:text-2xl">
+                  Find Your Match
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Explore leaders known for success in
+                  options&mdash;contracts, spreads, tickers&mdash;you name
+                  it.
+                </p>
+              </div>
+
+              {/* Card 3 */}
+              <div className="flex flex-col items-center rounded-2xl bg-gray-100 dark:bg-gray-800/50 border border-gray-200/50 dark:border-white/8 px-8 py-12 text-center">
+                <div className="mb-6 text-blue-600 dark:text-blue-400">
+                  <svg
+                    width="48"
+                    height="48"
+                    viewBox="0 0 48 48"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="10"
+                      y="8"
+                      width="24"
+                      height="32"
+                      rx="4"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    />
+                    <rect
+                      x="14"
+                      y="4"
+                      width="16"
+                      height="8"
+                      rx="2"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    />
+                    <path
+                      d="M34 28l6-6m0 0l-4-1m4 1l-1 4"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </div>
+                <h3 className="mb-4 text-xl font-bold italic text-gray-900 dark:text-white lg:text-2xl">
+                  Copy and grow
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Replicate trades, refine strategies, and
+                  learn&mdash;all while staying in control.
+                </p>
               </div>
             </div>
 
-            {/* Key Features */}
-            <section>
-              <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                Key Features
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Stop-Loss Automation</h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
-                    Automatically applies stop-loss orders to every copied trade, ensuring no single position can cause catastrophic damage to your portfolio.
-                  </p>
-                </div>
-                <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Drawdown Protection</h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
-                    Set maximum drawdown limits for your account. AutoGuard&trade; pauses copying when your equity drops below your comfort threshold.
-                  </p>
-                </div>
-                <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Position Sizing</h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
-                    Intelligently scales copied trade sizes relative to your account balance, so you never overexpose your capital regardless of the leader&apos;s position sizes.
-                  </p>
-                </div>
-                <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Risk Scoring</h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
-                    Every signal leader receives a dynamic risk score based on their trading behavior, helping you make informed decisions about who to copy.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            {/* Benefits for Copy Traders */}
-            <section>
-              <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                Benefits for Copy Traders
-              </h2>
-              <ul className="space-y-3 text-gray-700 dark:text-gray-300">
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#10003;</span>
-                  <span>Sleep peacefully knowing your portfolio is protected 24/7, even when markets are volatile</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#10003;</span>
-                  <span>No need to constantly monitor trades — AutoGuard&trade; handles risk management for you</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#10003;</span>
-                  <span>Customize your risk tolerance and let the system enforce it automatically</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#10003;</span>
-                  <span>Preserve capital during unexpected market events or leader trading errors</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#10003;</span>
-                  <span>Gain confidence to diversify across multiple leaders with controlled exposure</span>
-                </li>
-              </ul>
-            </section>
-
-            {/* Benefits for Leaders */}
-            <section>
-              <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                Benefits for Leaders
-              </h2>
-              <ul className="space-y-3 text-gray-700 dark:text-gray-300">
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#10003;</span>
-                  <span>Attract more followers by offering built-in risk protection through AutoGuard&trade;</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#10003;</span>
-                  <span>Build trust with your audience — followers know their capital is safeguarded</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#10003;</span>
-                  <span>Reduce follower churn caused by unexpected drawdowns or losses</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">&#10003;</span>
-                  <span>Focus on your trading strategy while AutoGuard&trade; manages follower risk</span>
-                </li>
-              </ul>
-            </section>
-
-            {/* Image placeholders after Benefits */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-              <div className="aspect-video rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600">
-                <p className="text-gray-400 dark:text-gray-500 text-sm">Image placeholder</p>
-              </div>
-              <div className="aspect-video rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600">
-                <p className="text-gray-400 dark:text-gray-500 text-sm">Image placeholder</p>
-              </div>
+            <div className="mt-12 text-center">
+              <Link
+                href="/register"
+                className="inline-block rounded-md bg-primary px-10 py-4 text-sm font-semibold text-white transition hover:bg-primary-hover shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50"
+              >
+                Get started now &rarr;
+              </Link>
             </div>
-
-            {/* Getting Started */}
-            <section>
-              <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                Getting Started
-              </h2>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                AutoGuard&trade; is enabled by default for all ScopsTrade copy trading accounts. Once
-                you start copying a leader, you can customize your AutoGuard&trade; settings from your
-                dashboard:
-              </p>
-              <ol className="space-y-3 text-gray-700 dark:text-gray-300">
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">1.</span>
-                  <span>Navigate to your <strong>Copy Trading Settings</strong> in the dashboard</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">2.</span>
-                  <span>Select the leader whose risk parameters you want to adjust</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">3.</span>
-                  <span>Configure your <strong>maximum drawdown</strong>, <strong>stop-loss percentage</strong>, and <strong>position sizing</strong> preferences</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-blue-500 font-bold">4.</span>
-                  <span>Save your settings — AutoGuard&trade; takes care of the rest</span>
-                </li>
-              </ol>
-            </section>
-
-            {/* CTA */}
-            <section className="bg-gray-100 dark:bg-gray-900 rounded-2xl p-8 border-2 border-gray-200 dark:border-gray-800">
-              <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                Trade Smarter with AutoGuard&trade;
-              </h2>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                Join thousands of copy traders who trust AutoGuard&trade; to protect their portfolios.
-                Create your ScopsTrade account today and experience automated risk management at its finest.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Link href="/register" className="inline-block bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50">
-                  Get Started
-                </Link>
-                <Link href="/" className="inline-block bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 text-gray-900 dark:text-white px-8 py-3 rounded-full font-semibold transition-all duration-300">
-                  Go Back Home
-                </Link>
-              </div>
-            </section>
           </div>
-        </div>
+        </section>
+
         <Footer />
       </main>
     </PagePreloader>

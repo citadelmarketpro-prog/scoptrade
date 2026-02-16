@@ -100,15 +100,7 @@ export default function LeaderGuide() {
               </ol>
             </section>
 
-            {/* Image placeholders after Setting Up Your Profile */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-              <div className="aspect-video rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600">
-                <p className="text-gray-400 dark:text-gray-500 text-sm">Image placeholder</p>
-              </div>
-              <div className="aspect-video rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600">
-                <p className="text-gray-400 dark:text-gray-500 text-sm">Image placeholder</p>
-              </div>
-            </div>
+            
 
             {/* Your Trading Performance */}
             <section>
@@ -139,15 +131,7 @@ export default function LeaderGuide() {
               </div>
             </section>
 
-            {/* Image placeholders after Your Trading Performance */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-              <div className="aspect-video rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600">
-                <p className="text-gray-400 dark:text-gray-500 text-sm">Image placeholder</p>
-              </div>
-              <div className="aspect-video rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600">
-                <p className="text-gray-400 dark:text-gray-500 text-sm">Image placeholder</p>
-              </div>
-            </div>
+           
 
             {/* Building Your Follower Base */}
             <section>

