@@ -2,6 +2,7 @@ import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import Link from "next/link";
 import PagePreloader from "@/components/PagePreloader";
+import Image from "next/image";
 
 export default function AboutPage() {
   return (
@@ -42,17 +43,25 @@ export default function AboutPage() {
               </p>
             </section>
 
-            {/* Image placeholders */}
+            {/* Story images */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="aspect-video rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600">
-                <p className="text-gray-400 dark:text-gray-500 text-sm">
-                  Image placeholder
-                </p>
+              <div className="aspect-video rounded-2xl overflow-hidden">
+                <Image
+                  src="/images/about_1.jpg"
+                  alt="ScopsTrade team in discussion"
+                  width={600}
+                  height={340}
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <div className="aspect-video rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600">
-                <p className="text-gray-400 dark:text-gray-500 text-sm">
-                  Image placeholder
-                </p>
+              <div className="aspect-video rounded-2xl overflow-hidden">
+                <Image
+                  src="/images/about_2.jpg"
+                  alt="ScopsTrade annual report presentation"
+                  width={600}
+                  height={340}
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
 
@@ -133,17 +142,25 @@ export default function AboutPage() {
               </p>
             </section>
 
-            {/* Team image placeholders */}
+            {/* Team images */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="aspect-video rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600">
-                <p className="text-gray-400 dark:text-gray-500 text-sm">
-                  Image placeholder
-                </p>
+              <div className="aspect-video rounded-2xl overflow-hidden">
+                <Image
+                  src="/images/about_3.jpg"
+                  alt="ScopsTrade team collaborating"
+                  width={600}
+                  height={340}
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <div className="aspect-video rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600">
-                <p className="text-gray-400 dark:text-gray-500 text-sm">
-                  Image placeholder
-                </p>
+              <div className="aspect-video rounded-2xl overflow-hidden">
+                <Image
+                  src="/images/about_4.jpg"
+                  alt="ScopsTrade team meeting"
+                  width={600}
+                  height={340}
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
 

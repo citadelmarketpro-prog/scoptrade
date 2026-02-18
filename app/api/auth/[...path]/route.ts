@@ -36,10 +36,19 @@ async function proxyRequest(request: NextRequest, path: string[]) {
 
   // Forward cookies from the browser to Django
   const cookieHeader = request.headers.get("cookie") || "";
+  const contentType = request.headers.get("content-type") || "";
 
-  const headers: HeadersInit = {
-    "Content-Type": "application/json",
-  };
+  const headers: HeadersInit = {};
+
+  // Only set Content-Type if explicitly provided; for multipart/form-data the
+  // browser already includes the boundary in the header and we must forward it
+  // verbatim. Defaulting to application/json when no type is present keeps the
+  // existing behaviour for JSON API calls.
+  if (contentType) {
+    headers["Content-Type"] = contentType;
+  } else {
+    headers["Content-Type"] = "application/json";
+  }
 
   if (cookieHeader) {
     headers["Cookie"] = cookieHeader;
@@ -52,7 +61,12 @@ async function proxyRequest(request: NextRequest, path: string[]) {
 
   let body: BodyInit | undefined;
   if (request.method !== "GET" && request.method !== "HEAD") {
-    body = await request.text();
+    // Use arrayBuffer for multipart so binary data is not corrupted by text decoding
+    if (contentType.includes("multipart/form-data")) {
+      body = await request.arrayBuffer();
+    } else {
+      body = await request.text();
+    }
   }
 
   try {
