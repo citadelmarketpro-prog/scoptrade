@@ -9,9 +9,9 @@ import { apiFetch } from "@/lib/api";
 
 interface Trade {
   id: number;
-  trader_id: number;
-  trader_name: string;
-  trader_username: string;
+  trader_id: number | null;
+  trader_name: string | null;
+  trader_username: string | null;
   trader_avatar_url: string | null;
   market: string;
   market_name: string;
@@ -74,15 +74,6 @@ export default function TradeHistoryPage() {
     } finally {
       setLoading(false);
     }
-  };
-
-  const getAvatarUrl = (avatarUrl: string | null, name: string) => {
-    return (
-      avatarUrl ||
-      `https://ui-avatars.com/api/?name=${encodeURIComponent(
-        name
-      )}&background=random&size=128`
-    );
   };
 
   return (
@@ -205,10 +196,7 @@ export default function TradeHistoryPage() {
         {!loading && !error && trades.length > 0 && (
           <div className="bg-white dark:bg-[#1a2744] rounded-2xl border border-gray-200 dark:border-white/10 overflow-hidden">
             {/* Table Header */}
-            <div className="hidden md:grid grid-cols-8 gap-4 px-6 py-3 bg-gray-50 dark:bg-[#0f1c35] border-b border-gray-200 dark:border-white/10">
-              <div className="col-span-2 text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                Trader
-              </div>
+            <div className="hidden md:grid grid-cols-6 gap-4 px-6 py-3 bg-gray-50 dark:bg-[#0f1c35] border-b border-gray-200 dark:border-white/10">
               <div className="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                 Asset
               </div>
@@ -234,41 +222,17 @@ export default function TradeHistoryPage() {
               {trades.map((trade) => (
                 <div
                   key={trade.id}
-                  className="grid grid-cols-1 md:grid-cols-8 gap-4 px-6 py-4 hover:bg-gray-50 dark:hover:bg-[#1e3a5f]/30 transition-all"
+                  className="grid grid-cols-1 md:grid-cols-6 gap-4 px-6 py-4 hover:bg-gray-50 dark:hover:bg-[#1e3a5f]/30 transition-all"
                 >
-                  {/* Trader Info */}
-                  <div className="col-span-1 md:col-span-2 flex items-center gap-3">
-                    <Link href={`/explore-traders/${trade.trader_id}`}>
-                      <Image
-                        src={getAvatarUrl(trade.trader_avatar_url, trade.trader_name)}
-                        alt={trade.trader_name}
-                        width={40}
-                        height={40}
-                        className="w-10 h-10 rounded-full object-cover cursor-pointer hover:ring-2 hover:ring-blue-500 transition-all"
-                        unoptimized
-                      />
-                    </Link>
-                    <div className="min-w-0 flex-1">
-                      <Link href={`/explore-traders/${trade.trader_id}`}>
-                        <p className="text-sm font-medium text-gray-900 dark:text-white truncate hover:text-blue-500 dark:hover:text-blue-400 cursor-pointer">
-                          {trade.trader_name}
-                        </p>
-                      </Link>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
-                        {trade.trader_username}
-                      </p>
-                    </div>
-                  </div>
-
                   {/* Asset */}
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-3">
                     {trade.market_logo_url && (
                       <Image
                         src={trade.market_logo_url}
                         alt={trade.market_name}
-                        width={24}
-                        height={24}
-                        className="w-6 h-6 rounded-full"
+                        width={40}
+                        height={40}
+                        className="w-10 h-10 rounded-full shrink-0"
                         unoptimized
                       />
                     )}

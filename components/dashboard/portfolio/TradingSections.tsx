@@ -9,7 +9,8 @@ import Image from "next/image";
 
 interface CopiedTrade {
   id: number;
-  trader_name: string;
+  trader_name: string | null;
+  trader_id: number | null;
   market: string;
   market_name: string;
   market_logo_url: string;
@@ -250,6 +251,8 @@ export function FollowingSection() {
       )}&background=random&size=128`
     );
   };
+
+  console.log(filteredTraders);
 
   return (
     <motion.div
