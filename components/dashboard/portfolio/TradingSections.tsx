@@ -322,7 +322,7 @@ export function FollowingSection() {
               </p>
             ) : (
               filteredTraders.map((trader) => (
-                <Link key={trader.id} href={`/explore-traders/${trader.trader_id}`}>
+                <Link className="inline-block w-full" key={trader.id} href={`/explore-traders/${trader.trader_id}`}>
                   <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50 dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 transition-all cursor-pointer border border-transparent hover:border-blue-500/30">
                     <Image
                       src={getAvatarUrl(trader.trader_avatar_url, trader.trader_name)}

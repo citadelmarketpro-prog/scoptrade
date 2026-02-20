@@ -36,6 +36,7 @@ interface TraderDetail {
   name: string;
   username: string;
   avatar_url: string | null;
+  country_flag_url: string | null;
   badge: string;
   country: string;
   gain: string;
@@ -442,8 +443,9 @@ export default function TraderProfilePage() {
         {/* Profile Header */}
         <div className="bg-white dark:bg-[#1a2744] border border-gray-100 dark:border-white/5 rounded-2xl p-6 sm:p-8 mb-6">
           <div className="flex flex-col sm:flex-row gap-6">
-            {/* Avatar */}
-            <div className="shrink-0">
+            {/* Avatar + Flag */}
+            <div className="shrink-0 flex items-start justify-between gap-6 min-w-[140px] sm:min-w-[160px]">
+              {/* Avatar */}
               <div className="relative">
                 <Image
                   src={getAvatarUrl(trader.avatar_url, trader.name)}
@@ -459,6 +461,23 @@ export default function TraderProfilePage() {
                   </div>
                 )}
               </div>
+
+              {/* Country Flag */}
+              {trader.country_flag_url && (
+                <div className="flex flex-col items-center gap-1 pt-1">
+                  <Image
+                    src={trader.country_flag_url}
+                    alt={trader.country}
+                    width={52}
+                    height={36}
+                    className="rounded-full object-cover shadow-sm border border-gray-200/50 dark:border-white/10 h-10 w-10"
+                    unoptimized
+                  />
+                  {/* <span className="text-[8px] text-gray-400 dark:text-gray-500 font-medium">
+                    {trader.country}
+                  </span> */}
+                </div>
+              )}
             </div>
 
             {/* Info */}
