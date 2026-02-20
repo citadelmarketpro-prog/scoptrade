@@ -86,7 +86,7 @@ export default function DashboardShell({ children }: DashboardShellProps) {
 
         {/* Main Content Area */}
         <main className="flex-1 overflow-y-auto overflow-x-hidden">
-          <div className="max-w-7xl mx-auto px-4 lg:px-6 py-4">
+          <div className="max-w-7xl mx-auto px-1 lg:px-6 py-4">
             {children}
           </div>
         </main>
