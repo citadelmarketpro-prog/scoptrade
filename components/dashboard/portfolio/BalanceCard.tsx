@@ -50,19 +50,28 @@ export default function BalanceCard({
       className="space-y-4"
     >
       {/* Balance Overview Card */}
-      <div className="rounded-2xl bg-white/90 dark:bg-[#1a2744]/80 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 shadow-lg p-5">
-        <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
+      <div className="rounded-2xl bg-white dark:bg-[#0d1b3e] border border-gray-100 dark:border-white/6 shadow-md dark:shadow-black/40 p-5">
+        <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-500 uppercase tracking-wider mb-3">
           Balance Overview
         </h3>
 
         {/* Blue Gradient Balance Card */}
         <div
-          className="relative rounded-2xl overflow-hidden min-h-[360px] sm:min-h-[300px] lg:min-h-[320px]"
+          className="relative rounded-2xl overflow-hidden min-h-90 sm:min-h-75 lg:min-h-80"
           style={{
             background:
               "linear-gradient(135deg, #1a4fd6 0%, #1535a8 40%, #0c1e72 100%)",
           }}
         >
+          {/* Light mode gradient overlay — replaces dark gradient in light mode */}
+          <div
+            className="absolute inset-0 pointer-events-none dark:hidden"
+            style={{
+              background:
+                "linear-gradient(135deg, #93c5fd 0%, #60a5fa 25%, #3b82f6 55%, #1d4ed8 85%, #1e3a8a 100%)",
+            }}
+          />
+
           {/* Gold grid overlay */}
           <div
             className="absolute inset-0 pointer-events-none"
@@ -72,6 +81,46 @@ export default function BalanceCard({
               backgroundSize: "30px 30px",
             }}
           />
+
+          {/* Bar chart with coordinate grid — more visible in light mode, subtle in dark */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <svg
+              className="absolute bottom-0 left-0 w-full h-full opacity-40 dark:opacity-20"
+              viewBox="0 0 300 120"
+              preserveAspectRatio="xMidYMax meet"
+              fill="none"
+            >
+              {/* Horizontal grid / coordinate lines */}
+              <line x1="0" y1="28" x2="300" y2="28" stroke="white" strokeOpacity="0.18" strokeWidth="0.5" strokeDasharray="4 3" />
+              <line x1="0" y1="52" x2="300" y2="52" stroke="white" strokeOpacity="0.18" strokeWidth="0.5" strokeDasharray="4 3" />
+              <line x1="0" y1="76" x2="300" y2="76" stroke="white" strokeOpacity="0.18" strokeWidth="0.5" strokeDasharray="4 3" />
+              <line x1="0" y1="100" x2="300" y2="100" stroke="white" strokeOpacity="0.12" strokeWidth="0.5" />
+
+              {/* Bar columns — rising left to right, bottom anchored at y=110 */}
+              <rect x="8"   y="88"  width="20" height="22" fill="white" fillOpacity="0.14" rx="2" />
+              <rect x="38"  y="75"  width="20" height="35" fill="white" fillOpacity="0.14" rx="2" />
+              <rect x="68"  y="80"  width="20" height="30" fill="white" fillOpacity="0.14" rx="2" />
+              <rect x="98"  y="62"  width="20" height="48" fill="white" fillOpacity="0.17" rx="2" />
+              <rect x="128" y="50"  width="20" height="60" fill="white" fillOpacity="0.19" rx="2" />
+              <rect x="158" y="36"  width="20" height="74" fill="white" fillOpacity="0.21" rx="2" />
+              <rect x="188" y="22"  width="20" height="88" fill="white" fillOpacity="0.23" rx="2" />
+              <rect x="218" y="14"  width="20" height="96" fill="white" fillOpacity="0.26" rx="2" />
+              <rect x="248" y="20"  width="20" height="90" fill="white" fillOpacity="0.22" rx="2" />
+
+              {/* Trend line connecting bar tops */}
+              <polyline
+                points="18,88 48,75 78,80 108,62 138,50 168,36 198,22 228,14 258,20"
+                stroke="white"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+
+              {/* Peak marker */}
+              <circle cx="228" cy="14" r="3.5" fill="white" fillOpacity="0.95" />
+              <circle cx="228" cy="14" r="6.5" stroke="white" strokeWidth="1" strokeOpacity="0.45" />
+            </svg>
+          </div>
 
           {/* Gold ambient light — spread across the whole card */}
           <div className="absolute -top-10 -right-10 w-72 h-72 rounded-full bg-yellow-400/15 blur-3xl pointer-events-none" />
@@ -132,7 +181,7 @@ export default function BalanceCard({
             {/* Top row: brand + status */}
             <div className="mb-5">
               <div className="flex flex-col gap-1.5">
-                <span className="text-[9px] font-black text-white/50 uppercase tracking-[0.25em]">
+                <span className="text-[9px] font-black text-white uppercase tracking-[0.25em]">
                   ScopTrade
                 </span>
                 <span
@@ -155,7 +204,7 @@ export default function BalanceCard({
             {/* Balance + profit — text floats on top of wallet image */}
             <div>
               <p
-                className="text-[9px] font-semibold text-blue-200/80 uppercase tracking-widest mb-1"
+                className="text-[9px] font-semibold dark:text-blue-200 text-white uppercase tracking-widest mb-1"
                 style={{ textShadow: "0 1px 8px rgba(0,0,0,0.8)" }}
               >
                 Total Balance
@@ -180,6 +229,7 @@ export default function BalanceCard({
                   className={`flex items-center gap-1 ${
                     isProfitPositive ? "text-emerald-300" : "text-red-300"
                   }`}
+                  style={{ textShadow: "0 1px 8px rgba(0,0,0,0.85), 0 0 20px rgba(0,0,0,0.5)" }}
                 >
                   {isProfitPositive ? (
                     <TrendingUp className="w-3.5 h-3.5 shrink-0" />
@@ -199,9 +249,10 @@ export default function BalanceCard({
                   <span
                     className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full border ${
                       isProfitPositive
-                        ? "bg-emerald-500/20 border-emerald-400/30 text-emerald-300"
-                        : "bg-red-500/20 border-red-400/30 text-red-300"
+                        ? "bg-emerald-500/30 border-emerald-300/60 text-emerald-200"
+                        : "bg-red-500/30 border-red-300/60 text-red-200"
                     }`}
+                    style={{ textShadow: "0 1px 4px rgba(0,0,0,0.7)" }}
                   >
                     {isProfitPositive ? "+" : ""}
                     {profitPercent.toFixed(2)}%
@@ -209,18 +260,21 @@ export default function BalanceCard({
                 )}
               </div>
 
-              <p className="text-[8px] text-blue-200/40 mt-1 uppercase tracking-wider">
+              <p
+                className="text-[8px] text-white/60 dark:text-blue-200/40 mt-1 uppercase tracking-wider"
+                style={{ textShadow: "0 1px 4px rgba(0,0,0,0.6)" }}
+              >
                 Total Profit / Loss
               </p>
             </div>
 
-            {/* Bottom stats strip — dark panel blocks the ambient glow */}
-            <div className="relative z-10 mt-25 lg:mt-5 lg:max-w-112.5 grid grid-cols-2 rounded-xl bg-black/30 backdrop-blur-md border border-yellow-400/20 overflow-hidden">
+            {/* Bottom stats strip — white in light mode, dark panel in dark mode */}
+            <div className="relative z-10 mt-25 lg:mt-5 lg:max-w-112.5 grid grid-cols-2 rounded-xl overflow-hidden bg-white/95 dark:bg-black/30 backdrop-blur-md border border-white/80 dark:border-yellow-400/20">
               <div className="px-4 py-3">
-                <p className="text-[9px] font-semibold text-blue-200/60 uppercase tracking-wider mb-1">
+                <p className="text-[9px] font-semibold text-gray-500 dark:text-blue-200/60 uppercase tracking-wider mb-1">
                   Profit
                 </p>
-                <p className="text-[13px] font-semibold text-white font-mono">
+                <p className="text-[13px] font-semibold text-gray-900 dark:text-white font-mono">
                   $
                   {totalProfits.toLocaleString("en-US", {
                     minimumFractionDigits: 2,
@@ -229,11 +283,11 @@ export default function BalanceCard({
                 </p>
               </div>
 
-              <div className="px-4 py-3 border-l border-yellow-400/20">
-                <p className="text-[9px] font-semibold text-blue-200/60 uppercase tracking-wider mb-1">
+              <div className="px-4 py-3 border-l border-gray-100 dark:border-yellow-400/20">
+                <p className="text-[9px] font-semibold text-gray-500 dark:text-blue-200/60 uppercase tracking-wider mb-1">
                   Deposited
                 </p>
-                <p className="text-[13px] font-semibold text-white font-mono">
+                <p className="text-[13px] font-semibold text-gray-900 dark:text-white font-mono">
                   $
                   {totalDeposits.toLocaleString("en-US", {
                     minimumFractionDigits: 2,
@@ -247,31 +301,31 @@ export default function BalanceCard({
       </div>
 
       {/* Quick Action Buttons */}
-      <div className="grid grid-cols-4 gap-2 sm:gap-3 mb-8">
+      <div className="flex flex-row justify-center gap-1.5 sm:gap-3 mb-5">
         {[
-          { label: "Deposit", icon: Plus, onClick: onDeposit, href: null },
-          { label: "Withdraw", icon: Minus, onClick: onWithdraw, href: null },
+          { label: "Deposit", icon: Plus, onClick: onDeposit, href: null, primary: true },
+          { label: "Withdraw", icon: Minus, onClick: onWithdraw, href: null, primary: false },
           {
             label: "Transfer",
             icon: ArrowUpFromLine,
             onClick: null,
             href: "/transfer",
+            primary: false,
           },
-          { label: "History", icon: Clock, onClick: onHistory, href: null },
+          { label: "History", icon: Clock, onClick: onHistory, href: null, primary: false },
         ].map((action) => {
           const content = (
             <>
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-blue-100/80 dark:bg-blue-400/10 flex items-center justify-center transition-colors group-hover:bg-blue-200/80 dark:group-hover:bg-blue-400/20">
-                <action.icon className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-blue-600 dark:text-blue-400" />
-              </div>
-              <span className="text-[10px] sm:text-[11px] font-medium text-gray-600 dark:text-gray-300">
+              <action.icon className={`w-3 h-3 sm:w-4 sm:h-4 shrink-0 ${action.primary ? "text-white" : "text-blue-600 dark:text-blue-400"}`} />
+              <span className={`text-[10px] sm:text-xs font-medium whitespace-nowrap ${action.primary ? "text-white font-semibold" : "text-gray-600 dark:text-gray-300"}`}>
                 {action.label}
               </span>
             </>
           );
 
-          const className =
-            "group bg-white/70 dark:bg-white/[0.04] backdrop-blur-xl border border-gray-200/50 dark:border-white/[0.08] rounded-xl py-3 sm:py-4 px-1.5 sm:px-2 flex flex-col items-center gap-1.5 sm:gap-2 transition-all duration-300 shadow-sm hover:shadow-md hover:shadow-blue-500/5 dark:hover:shadow-blue-500/10 hover:border-blue-300/50 dark:hover:border-blue-500/20 hover:bg-white/90 dark:hover:bg-white/[0.08]";
+          const className = action.primary
+            ? "group bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 border border-blue-500 dark:border-blue-400 rounded-full py-1.5 px-2.5 sm:py-2.5 sm:px-5 flex flex-row items-center gap-1.5 sm:gap-2 transition-all duration-200 shadow-sm shadow-blue-500/30"
+            : "group bg-white dark:bg-white/4 border border-gray-200 dark:border-white/[0.07] rounded-full py-1.5 px-2.5 sm:py-2.5 sm:px-5 flex flex-row items-center gap-1.5 sm:gap-2 transition-all duration-200 hover:border-blue-400 dark:hover:border-blue-500/40 hover:bg-blue-50 dark:hover:bg-white/8 shadow-sm";
 
           if (action.href) {
             return (
@@ -308,7 +362,7 @@ export default function BalanceCard({
         </h3>
 
         <div className="grid grid-cols-2 gap-3">
-          
+
           <div className="rounded-xl bg-white/90 dark:bg-[#1a2744]/80 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 p-4 shadow-sm">
             <div className="flex items-center gap-2 mb-2">
               <Wallet className="w-4 h-4 text-blue-500 dark:text-blue-400" />
@@ -325,7 +379,7 @@ export default function BalanceCard({
             </p>
           </div>
 
-          
+
           <div className="rounded-xl bg-white/90 dark:bg-[#1a2744]/80 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 p-4 shadow-sm">
             <div className="flex items-center gap-2 mb-2">
               <TrendingUp className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />

@@ -49,9 +49,7 @@ const kycSchema = z.object({
     message: "Please select source of income",
   }),
   industry: z.string().min(1, "Please select an industry"),
-  level_of_education: z.enum(["high_school", "associate", "bachelor", "master", "doctorate", "other"], {
-    message: "Please select education level",
-  }),
+  
   annual_amount: z.enum(["0-15k", "15k-50k", "50k-200k", "200k-500k", "500k-1m", "1m-3m", "3m+"], {
     message: "Please select annual income range",
   }),
@@ -204,7 +202,7 @@ export default function KYCVerificationPage() {
     if (currentStage === 0) {
       isValid = await trigger(["title", "first_name", "last_name", "dob"]);
     } else if (currentStage === 1) {
-      isValid = await trigger(["currency", "status_of_employment", "source_of_income", "industry", "level_of_education", "annual_amount", "estimated_net_worth"]);
+      isValid = await trigger(["currency", "status_of_employment", "source_of_income", "industry", "annual_amount", "estimated_net_worth"]);
     } else if (currentStage === 2) {
       isValid = await trigger(["address", "city", "region", "postal_code", "phone"]);
     }
@@ -533,23 +531,7 @@ export default function KYCVerificationPage() {
                     {errors.industry && <p className="text-red-500 text-sm mt-1">{errors.industry.message}</p>}
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Level of Education</label>
-                    <select
-                      {...register("level_of_education")}
-                      className="w-full border rounded-lg px-4 py-3 bg-white dark:bg-[#0d1829] border-gray-300 dark:border-gray-600/50 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                      <option value="">Select Education Level</option>
-                      <option value="high_school">High School</option>
-                      <option value="associate">Associate Degree</option>
-                      <option value="bachelor">Bachelor&apos;s Degree</option>
-                      <option value="master">Master&apos;s Degree</option>
-                      <option value="doctorate">Doctorate</option>
-                      <option value="other">Other</option>
-                    </select>
-                    {errors.level_of_education && <p className="text-red-500 text-sm mt-1">{errors.level_of_education.message}</p>}
-                  </div>
-
+                  
                   <div>
                     <label className="block text-sm font-medium mb-2">Annual Amount (USD)</label>
                     <select

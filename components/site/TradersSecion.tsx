@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
+
 interface TraderData {
   id: number;
   name: string;
@@ -20,12 +21,15 @@ const TradersSection = () => {
   useEffect(() => {
     const fetchTraders = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/auth/traders/", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_APP_BACKEND_ORIGIN}/traders/`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
           },
-        });
+        );
 
         if (response.ok) {
           const data = await response.json();
