@@ -25,7 +25,6 @@ interface Trader {
   gain: string;
   risk: number;
   trades: number;
-  capital: string;
   copiers: number;
   trend_direction: string;
   category: string;

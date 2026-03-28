@@ -42,7 +42,6 @@ interface TraderDetail {
   gain: string;
   risk: number;
   trades: number;
-  capital: string;
   copiers: number;
   avg_trade_time: string;
   subscribers: number;
@@ -53,7 +52,6 @@ interface TraderDetail {
   return_2y: string;
   avg_score_7d: string;
   profitable_weeks: string;
-  total_trades_12m: number;
   avg_profit_percent: string;
   avg_loss_percent: string;
   total_wins: number;
@@ -64,7 +62,6 @@ interface TraderDetail {
   frequently_traded: string[];
   bio: string;
   followers: number;
-  trading_days: string;
   trend_direction: string;
   tags: string[];
   category: string;
@@ -573,17 +570,6 @@ export default function TraderProfilePage() {
                     </div>
                     <div className="text-[11px] text-gray-500 dark:text-gray-400">
                       Followers
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-orange-500" />
-                  <div>
-                    <div className="text-sm font-bold text-gray-900 dark:text-white">
-                      {trader.trading_days}
-                    </div>
-                    <div className="text-[11px] text-gray-500 dark:text-gray-400">
-                      Trading days
                     </div>
                   </div>
                 </div>
@@ -1151,11 +1137,6 @@ export default function TraderProfilePage() {
                     color: "text-emerald-500",
                   },
                   {
-                    label: "Total Trades (12M)",
-                    value: trader.total_trades_12m.toString(),
-                    color: "text-gray-900 dark:text-white",
-                  },
-                  {
                     label: "Avg. Profit",
                     value: `+${trader.avg_profit_percent}%`,
                     color: "text-emerald-500",
@@ -1238,15 +1219,6 @@ export default function TraderProfilePage() {
               Trading Statistics
             </h2>
             <div className="space-y-6">
-              <div>
-                <div className="text-2xl font-bold text-gray-900 dark:text-white">
-                  {trader.total_trades_12m}
-                </div>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                  Total Trades in past 12 months
-                </p>
-              </div>
-
               <div className="flex flex-wrap gap-6">
                 <div className="flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-emerald-500" />
