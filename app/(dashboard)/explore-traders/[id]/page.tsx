@@ -76,6 +76,7 @@ interface TraderDetail {
     avg_loss: number;
     profitable_pct: number;
   }>;
+  profit_share: number;
   is_active: boolean;
   created_at: string;
   updated_at: string;
@@ -570,6 +571,17 @@ export default function TraderProfilePage() {
                     </div>
                     <div className="text-[11px] text-gray-500 dark:text-gray-400">
                       Followers
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Shield className="w-4 h-4 text-amber-500" />
+                  <div>
+                    <div className="text-sm font-bold text-gray-900 dark:text-white">
+                      {trader.profit_share ?? 50}%
+                    </div>
+                    <div className="text-[11px] text-gray-500 dark:text-gray-400">
+                      Profit Share
                     </div>
                   </div>
                 </div>
