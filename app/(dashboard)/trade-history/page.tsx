@@ -16,6 +16,7 @@ interface Trade {
   market: string;
   market_name: string;
   market_logo_url: string | null;
+  custom_image_url: string | null;
   direction: "buy" | "sell";
   direction_display: string;
   duration: string;
@@ -226,13 +227,13 @@ export default function TradeHistoryPage() {
                 >
                   {/* Asset */}
                   <div className="flex items-center gap-3">
-                    {trade.market_logo_url && (
+                    {(trade.custom_image_url ?? trade.market_logo_url) && (
                       <Image
-                        src={trade.market_logo_url}
+                        src={trade.custom_image_url ?? trade.market_logo_url!}
                         alt={trade.market_name}
                         width={40}
                         height={40}
-                        className="w-10 h-10 rounded-full shrink-0"
+                        className="w-10 h-10 rounded-full shrink-0 object-cover"
                         unoptimized
                       />
                     )}

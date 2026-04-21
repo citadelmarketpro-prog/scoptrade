@@ -13,7 +13,8 @@ interface CopiedTrade {
   trader_id: number | null;
   market: string;
   market_name: string;
-  market_logo_url: string;
+  market_logo_url: string | null;
+  custom_image_url: string | null;
   direction: "buy" | "sell";
   entry_price: string;
   exit_price: string | null;
@@ -125,13 +126,13 @@ export function TradeCopiedSection() {
                 <tr key={trade.id} className="hover:bg-gray-50/50 dark:hover:bg-white/5 transition-colors">
                   <td className="px-5 py-2.5 whitespace-nowrap">
                     <div className="flex items-center gap-2">
-                      {trade.market_logo_url && (
+                      {(trade.custom_image_url ?? trade.market_logo_url) && (
                         <Image
-                          src={trade.market_logo_url}
+                          src={trade.custom_image_url ?? trade.market_logo_url!}
                           alt={trade.market_name}
                           width={20}
                           height={20}
-                          className="w-5 h-5 rounded-full shrink-0"
+                          className="w-5 h-5 rounded-full shrink-0 object-cover"
                           unoptimized
                         />
                       )}
